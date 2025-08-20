@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasador Inmobiliario Lima - Calculadora de Precios por m²</title>
+    <meta name="description" content="Calculadora profesional de tasación inmobiliaria para Lima, Perú. Precios actualizados 2024 por distrito y zona.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMGY3NjZlIi8+CjxwYXRoIGQ9Ik04IDEySDI0VjI0SDhWMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTYgOEwyNCA4VjEySDhWOEwxNiA4WiIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4K">
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1>🏠 Tasador Inmobiliario Lima</h1>
+            <p class="lead">Calculadora profesional de precios por m² - Datos actualizados Agosto 2024</p>
+        </header>
+
+        <div class="grid">
+            <!-- Formulario Principal -->
+            <div class="card">
+                <h2>📋 Información del Inmueble</h2>
+                <form id="calc">
+                    <!-- Ubicación -->
+                    <div class="row">
+                        <div>
+                            <label for="distrito">📍 Distrito:</label>
+                            <select id="distrito" required>
+                                <option value="">Cargando distritos...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="zona">🏘️ Zona:</label>
+                            <select id="zona" required>
+                                <option value="">Primero seleccione distrito</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Tipo de Inmueble -->
+                    <label for="tipo">🏗️ Tipo de Inmueble:</label>
+                    <select id="tipo" required>
+                        <option value="">Seleccione tipo...</option>
+                        <option value="Departamento">🏢 Departamento</option>
+                        <option value="Casa">🏠 Casa</option>
+                        <option value="Terreno">📐 Terreno</option>
+                        <option value="Oficina">🏢 Oficina</option>
+                        <option value="Local">🏪 Local Comercial</option>
+                    </select>
+
+                    <!-- Áreas -->
+                    <div class="row">
+                        <div>
+                            <label for="areaTechada">🏠 Área Techada (m²):</label>
+                            <input type="number" id="areaTechada" min="1" max="2000" step="0.1" required placeholder="Ej: 120.5">
+                        </div>
+                        <div>
+                            <label for="areaLibre">🌳 Área Libre (m²):</label>
+                            <input type="number" id="areaLibre" min="0" max="5000" step="0.1" placeholder="Ej: 50.0">
+                        </div>
+                    </div>
+
+                    <!-- Características -->
+                    <div class="row">
+                        <div>
+                            <label for="dorms">🛏️ Dormitorios:</label>
+                            <select id="dorms" required>
+                                <option value="1">1 dormitorio</option>
+                                <option value="2" selected>2 dormitorios</option>
+                                <option value="3">3 dormitorios</option>
+                                <option value="4">4 dormitorios</option>
+                                <option value="5">5 dormitorios</option>
+                                <option value="6">6+ dormitorios</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="baths">🚿 Baños:</label>
+                            <select id="baths" required>
+                                <option value="1">1 baño</option>
+                                <option value="2" selected>2 baños</option>
+                                <option value="3">3 baños</option>
+                                <option value="4">4 baños</option>
+                                <option value="5">5+ baños</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Piso y Ascensor -->
+                    <div class="row">
+                        <div>
+                            <label for="piso">🏢 Piso:</label>
+                            <select id="piso" required>
+                                <option value="1">Piso 1</option>
+                                <option value="2">Piso 2</option>
+                                <option value="3" selected>Piso 3</option>
+                                <option value="4">Piso 4</option>
+                                <option value="5">Piso 5</option>
+                                <option value="6">Piso 6</option>
+                                <option value="7">Piso 7</option>
+                                <option value="8">Piso 8</option>
+                                <option value="9">Piso 9</option>
+                                <option value="10">Piso 10</option>
+                                <option value="15">Piso 15</option>
+                                <option value="20">Piso 20+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="ascensor">🛗 Ascensor:</label>
+                            <select id="ascensor" required>
+                                <option value="sin">Sin ascensor</option>
+                                <option value="con">Con ascensor</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Antigüedad y Moneda -->
+                    <div class="row">
+                        <div>
+                            <label for="antiguedad">📅 Antigüedad (años):</label>
+                            <select id="antiguedad" required>
+                                <option value="0">Nuevo (0-1 años)</option>
+                                <option value="2">2 años</option>
+                                <option value="5" selected>5 años</option>
+                                <option value="10">10 años</option>
+                                <option value="15">15 años</option>
+                                <option value="20">20 años</option>
+                                <option value="25">25 años</option>
+                                <option value="30">30+ años</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="currency">💰 Moneda:</label>
+                            <select id="currency" required>
+                                <option value="PEN" selected>🇵🇪 Soles (S/)</option>
+                                <option value="USD">🇺🇸 Dólares (USD)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="cta">
+                        📊 Calcular Tasación
+                    </button>
+                </form>
+            </div>
+
+            <!-- Resultados -->
+            <div class="card">
+                <h2>💰 Estimación de Valor</h2>
+                <p id="summary" class="muted">Complete el formulario para obtener la tasación</p>
+                
+                <div class="kpi">
+                    <div>
+                        <h3>📉 Valor Mínimo</h3>
+                        <div class="val-min" id="valMin">-</div>
+                    </div>
+                    <div>
+                        <h3>🎯 Valor Estimado</h3>
+                        <div class="val-med" id="valMed">-</div>
+                    </div>
+                    <div>
+                        <h3>📈 Valor Máximo</h3>
+                        <div class="val-max" id="valMax">-</div>
+                    </div>
+                </div>
+                
+                <p class="muted" style="margin-top: 15px;">
+                    * Estimación basada en factores de mercado peruano 2024: ubicación, área, antigüedad, 
+                    características del inmueble y condiciones actuales del sector inmobiliario limeño.
+                </p>
+
+                <!-- Información adicional -->
+                <div style="margin-top: 20px; padding: 15px; background: #f0fdfa; border-radius: 8px; border-left: 4px solid #0f766e;">
+                    <h4 style="margin: 0 0 10px 0; color: #0f766e; font-size: 14px;">ℹ️ Factores considerados:</h4>
+                    <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #666;">
+                        <li><strong>Ubicación:</strong> Distrito y zona específica</li>
+                        <li><strong>Área:</strong> Techada y libre (ponderada según tipo)</li>
+                        <li><strong>Antigüedad:</strong> 0.8% depreciación anual (máx. 35%)</li>
+                        <li><strong>Distribución:</strong> Dormitorios y baños</li>
+                        <li><strong>Altura:</strong> Piso y presencia de ascensor</li>
+                        <li><strong>Tipo:</strong> Casa, departamento, terreno, etc.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información del mercado -->
+        <div class="card" style="margin-top: 20px;">
+            <h3>📊 Información del Mercado Inmobiliario Lima</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                
+                <div style="background: #f8fafc; padding: 15px; border-radius: 8px;">
+                    <h4 style="margin: 0 0 10px 0; color: #334155; font-size: 14px;">🏆 Lima Top (Premium)</h4>
+                    <p style="margin: 0; font-size: 12px; color: #64748b;">San Isidro, Miraflores, Barranco, La Molina, Santiago de Surco</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #0f766e;">S/ 8,000 - S/ 12,000/m²</p>
+                </div>
+
+                <div style="background: #f8fafc; padding: 15px; border-radius: 8px;">
+                    <h4 style="margin: 0 0 10px 0; color: #334155; font-size: 14px;">🏙️ Lima Moderna</h4>
+                    <p style="margin: 0; font-size: 12px; color: #64748b;">Jesús María, Lince, San Miguel, Pueblo Libre, San Borja</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #0f766e;">S/ 6,000 - S/ 7,500/m²</p>
+                </div>
+
+                <div style="background: #f8fafc; padding: 15px; border-radius: 8px;">
+                    <h4 style="margin: 0 0 10px 0; color: #334155; font-size: 14px;">🌅 Lima Este</h4>
+                    <p style="margin: 0; font-size: 12px; color: #64748b;">Ate, Santa Anita, El Agustino, SJL, Chosica</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #0f766e;">S/ 3,400 - S/ 5,300/m²</p>
+                </div>
+
+                <div style="background: #f8fafc; padding: 15px; border-radius: 8px;">
+                    <h4 style="margin: 0 0 10px 0; color: #334155; font-size: 14px;">⬆️ Lima Norte</h4>
+                    <p style="margin: 0; font-size: 12px; color: #64748b;">Los Olivos, Comas, SMP, Independencia, Puente Piedra</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #0f766e;">S/ 2,600 - S/ 4,400/m²</p>
+                </div>
+
+                <div style="background: #f8fafc; padding: 15px; border-radius: 8px;">
+                    <h4 style="margin: 0 0 10px 0; color: #334155; font-size: 14px;">⬇️ Lima Sur</h4>
+                    <p style="margin: 0; font-size: 12px; color: #64748b;">Chorrillos, SJM, VES, VMT, Lurín, Pachacámac</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #0f766e;">S/ 2,800 - S/ 6,200/m²</p>
+                </div>
+
+                <div style="background: #f8fafc; padding: 15px; border-radius: 8px;">
+                    <h4 style="margin: 0 0 10px 0; color: #334155; font-size: 14px;">🚢 Callao</h4>
+                    <p style="margin: 0; font-size: 12px; color: #64748b;">Callao, Bellavista, La Perla, La Punta, Ventanilla</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #0f766e;">S/ 2,700 - S/ 7,200/m²</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer style="text-align: center; margin-top: 40px; padding: 20px 0; border-top: 1px solid #e5e7eb;">
+            <p style="margin: 0; color: #666; font-size: 13px;">
+                📅 Datos actualizados: Agosto 2024 | 
+                💱 Tipo de cambio: S/ 3.75 por USD | 
+                🏠 Cobertura: 70+ distritos y 500+ zonas
+            </p>
+            <p style="margin: 10px 0 0 0; color: #999; font-size: 12px;">
+                Esta herramienta proporciona estimaciones referenciales basadas en promedios de mercado. 
+                Para tasaciones oficiales, consulte con un perito tasador colegiado.
+            </p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Analytics y optimización -->
+    <script>
+        // Optimización: precarga de datos críticos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Validar que los datos se cargaron correctamente
+            if (typeof DATA === 'undefined') {
+                console.error('ERROR: No se pudieron cargar los datos de tasación');
+                document.getElementById('summary').textContent = 'Error: No se pudieron cargar los datos de precios';
+                document.getElementById('summary').style.color = '#ef4444';
+            } else {
+                console.log(`✅ Datos cargados: ${Object.keys(DATA).length} distritos disponibles`);
+            }
+
+            // Mejorar UX: auto-focus en primer campo
+            const primerCampo = document.getElementById('distrito');
+            if (primerCampo) {
+                primerCampo.focus();
+            }
+
+            // Validación en tiempo real
+            const inputs = document.querySelectorAll('input[type="number"]');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    // Remover clases de error previas
+                    this.classList.remove('error');
+                    
+                    // Validar rango
+                    const min = parseFloat(this.getAttribute('min'));
+                    const max = parseFloat(this.getAttribute('max'));
+                    const value = parseFloat(this.value);
+                    
+                    if (value < min || value > max || isNaN(value)) {
+                        this.classList.add('error');
+                    }
+                });
+            });
+        });
+
+        // Función para mostrar estadísticas (opcional)
+        function mostrarEstadisticasMercado() {
+            if (typeof getMarketStats === 'function') {
+                const stats = getMarketStats();
+                console.log('📊 Estadísticas del mercado:', stats);
+            }
+        }
+
+        // Función para buscar por rango de precios (opcional)
+        function buscarPorPrecio(min, max) {
+            if (typeof findByPriceRange === 'function') {
+                return findByPriceRange(min, max);
+            }
+        }
+    </script>
+
+    <!-- Estilos adicionales inline para compatibilidad -->
+    <style>
+        /* Estilos de validación */
+        input.error {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+        }
+
+        /* Mejoras responsive adicionales */
+        @media (max-width: 480px) {
+            .wrap {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            .lead {
+                font-size: 14px;
+            }
+
+            .kpi {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* Loading state */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid #0f766e;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Tooltips informativos */
+        [data-tooltip] {
+            position: relative;
+            cursor: help;
+        }
+
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 12px;
+            background: #333;
+            color: white;
+            font-size: 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+    </style>
+</body>
+</html>
